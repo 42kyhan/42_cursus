@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_action.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyhan <kyhan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kyhan <kyhan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 15:07:51 by kyhan             #+#    #+#             */
-/*   Updated: 2022/08/15 15:07:51 by kyhan            ###   ########.fr       */
+/*   Updated: 2022/08/16 17:36:40 by kyhan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,26 @@ void	philo_eat(t_game *game, int i)
 
 	if (i % 2 == 0)
 	{
-		eattime = get_time() + game->eattime;
-		pthread_mutex_lock(&game->fork[game->philo[i].fork.right]);
-		philo_print(game, game->philo[i].id, FORK);
 		pthread_mutex_lock(&game->fork[game->philo[i].fork.left]);
+		philo_print(game, game->philo[i].id, FORK);
+		pthread_mutex_lock(&game->fork[game->philo[i].fork.right]);
 		philo_print(game, game->philo[i].id, FORK);
 	}
 	else
 	{
-		eattime = get_time() + game->eattime;
-		pthread_mutex_lock(&game->fork[game->philo[i].fork.left]);
-		philo_print(game, game->philo[i].id, FORK);
 		pthread_mutex_lock(&game->fork[game->philo[i].fork.right]);
+		philo_print(game, game->philo[i].id, FORK);
+		pthread_mutex_lock(&game->fork[game->philo[i].fork.left]);
 		philo_print(game, game->philo[i].id, FORK);
 	}
 	philo_print(game, game->philo[i].id, EAT);
-	vsleep(game->eattime);
 	game->philo[i].dead_time = get_time();
+	vsleep(game->eattime);
 	unlock_fork(game, i);
 }
 
 void	philo_sleep(t_game *game, int i)
 {
-	long long	wakeup;
-
-	wakeup = get_time() + game->sleeptime;
 	philo_print(game, game->philo[i].id, SLEEP);
 	vsleep(game->sleeptime);
 }

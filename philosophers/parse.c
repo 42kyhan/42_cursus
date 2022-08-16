@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyhan <kyhan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kyhan <kyhan@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 15:07:30 by kyhan             #+#    #+#             */
-/*   Updated: 2022/08/15 15:07:30 by kyhan            ###   ########.fr       */
+/*   Updated: 2022/08/16 17:20:20 by kyhan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ void	parse(int argc, char **argv, t_game *game)
 		philo_parse(argv, game);
 	else if (argc == 6)
 		philo_with_eat_count_parse(argv, game);
-	if (game->philo_num == 1)
-		philo_error("You have to more than 1 philosopher");
+	// if (game->philo_num == 1)
+	// 	philo_error("You have to more than 1 philosopher");
 }
