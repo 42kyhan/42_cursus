@@ -35,14 +35,19 @@ int	main(int ac, char **av)
 	while (true)
 	{
 		std::getline(ifs, sub);
-		size_t	index = sub.find(av[2]);
-		if (index == std::string::npos)
+		while (true)
 		{
-			ofs << sub;
-			break ;
+			std::size_t	index = sub.find(av[2]);
+			if (index == std::string::npos)
+			{
+				ofs << sub;
+				break ;
+			}
+			ofs << sub.substr(0, index) << av[3];
+			sub = sub.substr(index + std::strlen(av[2]));
 		}
-		ofs << sub.substr(0, index) << av[3];
-		sub = sub.substr(index + std::strlen(av[2]));
+		if (ifs.eof())
+			break ;
+		ofs << std::endl;
 	}
-	
 }
