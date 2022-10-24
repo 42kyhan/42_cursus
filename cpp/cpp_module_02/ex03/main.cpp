@@ -2,11 +2,11 @@
 
 int	main(void)
 {
-	Point	a(5, 5);
-	Point	b(2, 9);
-	Point	c(0, 5);
-	Point	p(3, 7);
-	Point	outP(4, 7);
+	Point const a(5, 5);
+	Point const	b(2, 9);
+	Point const	c(0, 5);
+	Point const	p(3, 7);
+	Point const	outP(4, 7);
 
 	std::cout << "Point a.x = " << a.getX() << " a.y = " << a.getY() << std::endl;
 	std::cout << "Point b.x = " << b.getX() << " b.y = " << b.getY() << std::endl;
