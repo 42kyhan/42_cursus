@@ -2,7 +2,7 @@
 #include "Dog.hpp"
 #include "WrongCat.hpp"
 
-int main()
+void	main_main()
 {
 	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
@@ -18,5 +18,11 @@ int main()
 	delete j;
 	delete i;
 	delete k;
-return 0;
+}
+
+int main()
+{
+	main_main();
+	system("leaks ex00");
+	return 0;
 }
