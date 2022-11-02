@@ -36,7 +36,7 @@ public:
 	int			getGrade() const;
 	void		incrementGrade();
 	void		decrementGrade();
-	void		signForm(Form const &obj) const;
+	void		signForm(Form &obj);
 	void		executeForm(Form const &form);
 };
 
