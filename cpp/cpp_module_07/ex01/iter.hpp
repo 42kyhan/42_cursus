@@ -11,7 +11,6 @@ void iter(T *arr, std::size_t len, void (*f)(T const &))
 	{
 		f(arr[i]);
 	}
-	std::cout << std::endl;
 }
 
 template <typename T>

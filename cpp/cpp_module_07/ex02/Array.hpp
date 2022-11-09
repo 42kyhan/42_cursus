@@ -12,15 +12,6 @@ private:
 	std::size_t len_;
 	T *arr_;
 public:
-	class OutOfRange : public std::exception
-	{
-	public:
-		const char *what(void) const throw()
-		{
-			return ("Out Of Range");
-		}
-	};
-
 	Array()
 	{
 		this->len_ = 0;
@@ -30,15 +21,13 @@ public:
 	Array(unsigned int n)
 	{
 		this->len_ = n;
-		if (this->len_)
-			this->arr_ = new T[this->len_];
+		this->arr_ = new T[this->len_];
 	}
 
 	Array(Array const &obj)
 	{
 		this->len_ = obj.len_;
-		if (this->len_)
-			this->arr_ = new T[this->len_];
+		this->arr_ = new T[this->len_];
 		for (std::size_t i = 0; i < this->len_; i++)
 			this->arr_[i] = obj.arr_[i];
 	}
@@ -47,15 +36,9 @@ public:
 	{
 		if (this != &obj)
 		{
-			if (this->len_)
-			{
-				delete[] this->arr_;
-				this->arr_ = NULL;
-				this->len_ = 0;
-			}
+			delete[] this->arr_;
 			this->len_ = obj.len_;
-			if (this->len_)
-				this->arr_ = new T[this->len_];
+			this->arr_ = new T[this->len_];
 			for (std::size_t i = 0; i < this->len_; i++)
 				this->arr_[i] = obj.arr_[i];
 		}
@@ -65,14 +48,14 @@ public:
 	T& operator[](std::size_t i)
 	{
 		if (i >= this->len_)
-			throw OutOfRange();
+			throw std::out_of_range("배열의 index가 초과되었습니다");
 		return (this->arr_[i]);
 	}
 
 	const T& operator[](std::size_t i) const
 	{
 		if (i >= this->len_)
-			throw OutOfRange();
+			throw std::out_of_range("배열의 index가 초과되었습니다");
 		return (this->arr_[i]);
 	}
 	

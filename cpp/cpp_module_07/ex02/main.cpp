@@ -2,6 +2,8 @@
 
 void main_main()
 {
+	Array<int> nullArr;
+	Array<int> nullArr2(0);
 	Array<int> intArr(10);
 	std::cout << "intArr: " << intArr.size() << std::endl;
 	for (std::size_t i = 0; i < intArr.size(); i++)
