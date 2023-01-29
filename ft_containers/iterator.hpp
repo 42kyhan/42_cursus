@@ -6,10 +6,9 @@
 namespace ft {
 
     //iterator base class
-    template <class Category, class T, class Distance = ptrdiff_t, 
-              class Pointer = T*, class Reference = T&>
+    template <class Category, class T, class Distance = ptrdiff_t, class Pointer = T*, class Reference = T&>
         class iterator {
-        public::
+        public:
           typedef T             value_type; // 반복자가 가르키고 있는 값의 요소
           typedef Distance      difference_type; // 반복자의 차이
           typedef Pointer       pointer; // 반복자가 가르키는 값의 포인터
@@ -61,10 +60,10 @@ namespace ft {
         protected:
             Iterator current;
         public:
-            typedef Iterator iterator_type;
-            typedef iterator_traits<Iterator>::difference_type difference_type;
-            typedef iterator_traits<Iterator>::pointer pointer;
-            typedef iterator_traits<Iterator>::reference reference;
+            typedef typename Iterator iterator_type;
+            typedef typename iterator_traits<Iterator>::difference_type difference_type;
+            typedef typename iterator_traits<Iterator>::pointer pointer;
+            typedef typename iterator_traits<Iterator>::reference reference;
 
             reverse_iterator() : current(iterator_type()) {}
             explicit reverse_iterator(iterator_type it) : current(it) {}
@@ -143,13 +142,13 @@ namespace ft {
 
             random_access_iterator& operator=(T* rhs) {_ptr = rhs; return (*this);}
 
-            random_access_iterator operator+(difference_type n) cosnt {return (_ptr + n);}
+            random_access_iterator operator+(difference_type n) const {return (_ptr + n);}
         
             random_access_iterator& operator++() {++_ptr; return(*this);}
 
             random_access_iterator operator++(int) {random_access_iterator tmp(*this); ++_ptr; return(tmp);}
 
-            random_access_iterator operator-(difference_type n) cosnt {return (_ptr - n);}
+            random_access_iterator operator-(difference_type n) const {return (_ptr - n);}
 
             random_access_iterator& operator--() {--_ptr; return(*this);}
 
