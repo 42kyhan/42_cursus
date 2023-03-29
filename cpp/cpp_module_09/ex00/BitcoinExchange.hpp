@@ -91,7 +91,13 @@ public:
         std::string line;
         while (std::getline(ifs, line)) {
             if (!firstLine) {
-                firstLine = true;
+                if (line == "date | value") {
+                    firstLine = true;
+                }
+                else {
+                    std::cerr << "Error: Invalid format" << std::endl;
+                    return ;
+                }
                 continue;
             }
 
@@ -140,18 +146,16 @@ public:
                 std::cerr << "Error: not a positive number." << std::endl;
                 continue;
             }
-            if (value > INT_MAX) {
+            if (value > 1000) {
                 std::cerr << "Error: too large a number" << std::endl;
                 continue;
             }
 
             std::map<std::string, float>::iterator it;
             it = this->data.upper_bound(date);
-            if (it != this->data.end()) {
-                std::pair<std::string, float> obj;
-                obj = *(--it);
-                std::cout << date << "=> " << value << " = " << value * obj.second << std::endl;
-            }
+            std::pair<std::string, float> obj;
+            obj = *(--it);
+            std::cout << date << "=> " << value << " = " << value * obj.second << std::endl;
         }
         ifs.close();
     }
