@@ -1,20 +1,19 @@
 NAME = inception
 
-all: $(NAME)
+.PHONY : all
+all : $(NAME)
+$(NAME) :
+	sudo mkdir -p ${HOME}/data/mariadb ${HOME}/data/wordpress 
+	sudo docker-compose -f srcs/docker-compose.yml --env-file srcs/.env up --force-recreate --build -d
 
-$(NAME):
-		mkdir -p ${HOME}/data/wordpress ${HOME}/data/mariadb
-		docker compose -f ./srcs/docker-compose.yml up -d
+.PHONY : clean 
+clean :
+	sudo docker-compose -f srcs/docker-compose.yml --env-file srcs/.env down --rmi all -v --remove-orphans 
 
-clean:
-		docker compose -f ./srcs/docker-compose.yml down --rmi all --remove-orphans -v
+.PHONY : fclean 
+fclean : clean
+	sudo rm -rf ${HOME}/data
+	sudo docker system prune -a -f
 
-fclean: clean
-		rm -rf ${HOME}/data
-		docker system prune -a --volumes -f
-		docker network prune -f
-		docker volume prune -f
-
-re: fclean all
-
-.PHONY: all clean fclean re
+.PHONY : re
+re : fclean all
