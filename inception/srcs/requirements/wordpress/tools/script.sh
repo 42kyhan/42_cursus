@@ -12,4 +12,4 @@ wp user create $WORDPRESS_USER $WORDPRESS_USER_EMAIL --role=author --user_pass=$
 
 fi
 
-/usr/sbin/php-fpm7 -F -R
+exec /usr/sbin/php-fpm7 -F -R

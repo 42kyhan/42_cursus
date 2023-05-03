@@ -2,7 +2,6 @@ FROM alpine:3.15
 
 RUN apk update && \
     apk add curl mariadb-client php7 php7-fpm php7-phar php7-json php7-curl php7-mysqli php7-mbstring && \
-    apk add openrc && openrc && touch run/openrc/softlevel && \
     apk add wget && \
     mkdir -p /var/www/wordpress && \
     curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \

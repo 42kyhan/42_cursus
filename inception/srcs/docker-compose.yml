@@ -4,6 +4,7 @@ services:
   
   #mariadb
   mariadb:
+    image: mariadb
     build: ./requirements/mariadb/
     container_name: mariadb
     expose:
@@ -22,6 +23,7 @@ services:
 
   # wordpress
   wordpress:
+    image: wordpress
     build: ./requirements/wordpress/
     container_name: wordpress
     expose:
@@ -49,6 +51,7 @@ services:
 
   #nginx
   nginx:
+    image: nginx
     build: ./requirements/nginx/
     container_name: nginx
     ports: 
